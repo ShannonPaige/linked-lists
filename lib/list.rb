@@ -13,9 +13,7 @@ module LinkedList
         @head = node
       else
         here = @head
-        until here.tail?
-          here = here.next
-        end
+        here = here.next until here.tail?
         here.next = node
       end
     end
@@ -52,14 +50,14 @@ module LinkedList
         here = @head
         includes = false
         until here.tail?
-          while here.data != node
-            here.data
+          if here.data == node
+            includes = true
+            break
+          else
             here = here.next
           end
         end
-        if here.data == node
-          includes = true
-        end
+        includes = true if here.data == node
       end
       includes
     end
@@ -94,8 +92,7 @@ module LinkedList
 
     def tail_value
       here = @head
-
-        here = here.next until here.tail?
+      here = here.next until here.tail?
       here.data
     end
 
@@ -148,9 +145,3 @@ module LinkedList
     end
   end
 end
-
-new_list = LinkedList::List.new
-new_node = LinkedList::Node.new(:node_data)
-new_node2 = LinkedList::Node.new(:node2_data)
-new_list.append(new_node)
-new_list.includes?(:node_data) # => true
