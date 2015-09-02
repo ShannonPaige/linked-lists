@@ -93,31 +93,49 @@ module LinkedList
       @head.data
     end
 
-    # def tail_value
-    #   # return the tail value at the end of the list
-    #   # a tail is the node that has nil as its next node
-    # end
-    #
-    # def find_by_index
-    #   # find the value at a numeric position
-    # end
-    #
-    # def find_by_value(value)
-    #   # finds the position of the first occurrence of a value
-    #   here = head
-    #   while (here.data != value &&  here.next != nil)
-    #     here = here.next
-    #   if here.data == value
-    #     # return the position
-    #   else
-    #     nil
-    #   end
-    # end
-    #
-    # def remove_by_index
-    #   # removes the value at the specified index
-    # end
-    #
+    def tail_value
+      # return the tail value at the end of the list
+      # a tail is the node that has nil as its next node
+      here = @head
+      until here.tail?
+        here = here.next
+      end
+      here.data
+    end
+
+    def find_by_index(index)
+      here = @head
+      counter = 0
+      until counter == index
+        here = here.next
+        counter +=1
+      end
+      here.data
+    end
+
+    def find_by_value(value)
+      here = @head
+      counter = 0
+      until here.data == value
+        here = here.next
+        counter += 1
+      end
+      counter
+    end
+
+    def remove_by_index(index)
+      # removes the value at the specified index
+      here = @head
+      count = 0
+      until count == index
+        placeholder = here
+        here = here.next
+        count +=1
+      end
+      placeholder.next = here.next
+      here.next = nil
+    end
+
     # def remove_by_value
     #   # removes the first occurrence of the specified value
     # end
@@ -127,6 +145,8 @@ end
 new_list = LinkedList::List.new
 new_node = LinkedList::Node.new(:node_data)
 new_node2 = LinkedList::Node.new(:node2_data)
+new_node3 = LinkedList::Node.new(:node3_data)
 new_list.append(new_node)
 new_list.append(new_node2)
-new_list.head  # => :node_data
+new_list.append(new_node3)
+new_list.remove_by_index(1)

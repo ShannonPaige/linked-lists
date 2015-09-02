@@ -63,27 +63,35 @@ class LinkedList::ListTest < MiniTest::Test
   def test_returns_data_value_from_head_node
     @new_list.append(@new_node)
     @new_list.append(@new_node2)
-    assert_equal @new_node, @new_list.head
+    assert_equal :node_data, @new_list.head_value
   end
 
   def test_tail
-    skip
-    # return the tail value at the end of the list
+    @new_list.append(@new_node)
+    @new_list.append(@new_node2)
+    assert_equal :node2_data, @new_list.tail_value
   end
 
-  def test_find_by_index
-    skip
-    # find the value at a numeric position
+  def test_return_data_from_node_at_given_index
+    @new_list.append(@new_node)
+    @new_list.append(@new_node2)
+    @new_list.append(@new_node3)
+    assert_equal :node2_data, @new_list.find_by_index(1)
   end
 
-  def test_find_by_value
-    skip
-    # finds the position of the first occurrence of a value
+  def test_return_index_of_node_with_first_given_value
+    @new_list.append(@new_node)
+    @new_list.append(@new_node2)
+    @new_list.append(@new_node3)
+    assert_equal 1, @new_list.find_by_value(:node2_data)
   end
 
-  def test_remove_by_index
-    skip
-    # removes the value at the specified index
+  def test_remove_node_at_given_index
+    @new_list.append(@new_node)
+    @new_list.append(@new_node2)
+    @new_list.append(@new_node3)
+    @new_list.remove_by_index(1)
+    assert_equal @new_node3, @new_node.next
   end
 
   def test_remove_by_value
