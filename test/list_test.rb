@@ -95,7 +95,10 @@ class LinkedList::ListTest < MiniTest::Test
   end
 
   def test_remove_by_value
-    skip
-    # removes the first occurrence of the specified value
+    @new_list.append(@new_node)
+    @new_list.append(@new_node2)
+    @new_list.append(@new_node3)
+    @new_list.remove_by_value(:node2_data)
+    assert_equal @new_node3, @new_node.next
   end
 end

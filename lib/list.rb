@@ -126,19 +126,26 @@ module LinkedList
     def remove_by_index(index)
       # removes the value at the specified index
       here = @head
-      count = 0
-      until count == index
+      counter = 0
+      until counter == index
         placeholder = here
         here = here.next
-        count +=1
+        counter +=1
       end
       placeholder.next = here.next
       here.next = nil
     end
 
-    # def remove_by_value
-    #   # removes the first occurrence of the specified value
-    # end
+    def remove_by_value(value)
+      # removes the first occurrence of the specified value
+      here = @head
+      until here.data == value
+        placeholder = here
+        here = here.next
+      end
+      placeholder.next = here.next
+      here.next = nil
+    end
   end
 end
 
