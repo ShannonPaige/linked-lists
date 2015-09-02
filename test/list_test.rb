@@ -90,6 +90,11 @@ class LinkedList::ListTest < MiniTest::Test
     assert_equal 1, @test_list.find_by_value(:node2_data)
   end
 
+  def test_find_by_value_returns_nil_if_value_not_included
+    @test_list.append(@node1)
+    assert_equal nil, @test_list.find_by_value(:node4_data)
+  end
+
   def test_remove_node_at_given_index
     @test_list.append(@node1)
     @test_list.append(@node2)
@@ -111,5 +116,10 @@ class LinkedList::ListTest < MiniTest::Test
     @test_list.append(@node2)
     @test_list.append(@node3)
     assert_equal 2, @test_list.distance(@node1, @node3)
+  end
+
+  def test_distance_returns_nil_if_both_the_nodes_are_not_in_the_list
+    @test_list.append(@node1)
+    assert_equal nil, @test_list.distance(@node1, @node3)
   end
 end

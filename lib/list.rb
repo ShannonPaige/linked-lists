@@ -107,11 +107,18 @@ module LinkedList
     end
 
     def find_by_value(value)
-      here = @head
-      counter = 0
-      until here.data == value
-        here = here.next
-        counter += 1
+      head
+      if @head.nil?
+        counter = nil
+      else
+        here = @head
+        counter = 0
+        until (here.data == value || here.tail?)
+          here = here.next
+          counter += 1
+          counter
+        end
+        counter = nil if (here.tail? && here.data != value)
       end
       counter
     end
@@ -139,9 +146,22 @@ module LinkedList
     end
 
     def distance(node_one, node_two)
-      point_a = find_by_value(node_one.data)
-      point_b = find_by_value(node_two.data)
-      (point_a - point_b).abs
+      if count < 2
+        puts "At least one of these nodes isn't in the list."
+      else
+        point_a = find_by_value(node_one.data)
+        point_b = find_by_value(node_two.data)
+        (point_a - point_b).abs
+      end
     end
   end
 end
+
+test_list = LinkedList::List.new
+node1 = LinkedList::Node.new(:node_data)
+node2 = LinkedList::Node.new(:node2_data)
+node3 = LinkedList::Node.new(:node3_data)
+test_list.append(node1)
+test_list.append(node2)
+test_list.append(node3)
+test_list.find_by_value(:node4_data)
