@@ -48,34 +48,48 @@ module LinkedList
     end
 
     def includes?(node)
-      # includes? gives back true or false whether the supplied value is in the list
       here = @head
       includes = false
       until here.tail?
-        node # => :node2_data
-        here.data # => :node_data
-        if here.data == node # => false
+        if here.data == node
            includes = true
            break
         else
-          here # => #<LinkedList::Node:0x007fa21391bc68 @data=:node_data, @next=#<LinkedList::Node:0x007fa21391bc40 @data=:node2_data, @next=nil>>
            here = here.next
-           here # => #<LinkedList::Node:0x007fa21391bc40 @data=:node2_data, @next=nil>
          end
       end
-      if here.data == node # => true
+      if here.data == node
          includes = true
       end
       includes
     end
 
     # def pop
-    #   # pop an element from the end of the list
-    # end
+    #   here = @head
+    # counter < count
+    #   while counter
+    #     here = here.next
+    #     count += 1
+    #   end
     #
-    # def count
-    #   # count the number of elements in the list
+    #
     # end
+
+    def count
+      # count the number of elements in the list
+      head
+      if @head.nil? # => true
+        counter = 0
+      else
+        here = @head
+        counter = 1
+        until here.tail?
+          here = here.next
+          counter += 1
+        end
+      end
+      counter
+    end
     #
     # def head
     #   # return the head value at the beginning of the list
@@ -115,7 +129,4 @@ end
 new_list = LinkedList::List.new
 new_node = LinkedList::Node.new(:node_data)
 new_node2 = LinkedList::Node.new(:node2_data)
-new_list.append(new_node)
-new_list.append(new_node2)
-#new_list.includes?(:node_data) # => true
-new_list.includes?(:node2_data) # => true
+new_list.count # => 0

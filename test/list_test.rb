@@ -40,22 +40,25 @@ class LinkedList::ListTest < MiniTest::Test
     assert_equal @new_node3, @new_node.next
   end
 
-  def test_includes?
+  def test_decides_if_list_includes_a_data_value
     @new_list.append(@new_node)
     @new_list.append(@new_node2)
     assert @new_list.includes?(:node2_data)
     refute @new_list.includes?(:node3_data)
-    # includes? gives back true or false whether the supplied value is in the list
   end
 
-  def test_pop
+  def test_pops_an_element_from_the_end_of_the_list
     skip
-    # pop an element from the end of the list
+    # @new_list.append(@new_node)
+    # @new_list.append(@new_node2)
+    # @new_list.pop
+    # assert_equal nil, @new_node.next
   end
 
-  def test_count
-    skip
-    # count the number of elements in the list
+  def test_counts_the_number_of_nodes_in_the_list
+    @new_list.append(@new_node)
+    @new_list.append(@new_node2)
+    assert_equal 2, @new_list.count
   end
 
   def test_head
