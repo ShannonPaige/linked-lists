@@ -60,9 +60,10 @@ class LinkedList::ListTest < MiniTest::Test
     assert_equal 2, @new_list.count
   end
 
-  def test_head
-    skip
-    # return the head value at the beginning of the list
+  def test_returns_data_value_from_head_node
+    @new_list.append(@new_node)
+    @new_list.append(@new_node2)
+    assert_equal @new_node, @new_list.head
   end
 
   def test_tail

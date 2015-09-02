@@ -32,7 +32,7 @@ module LinkedList
     end
 
     def insert(node, index)
-      if @head == nil
+      if @head.nil?
         @head = node
       else
         here = @head
@@ -75,9 +75,7 @@ module LinkedList
     end
 
     def count
-      # count the number of elements in the list
-      head
-      if @head.nil? # => false
+      if @head.nil? # =>
         counter = 0
       else
         here = @head
@@ -89,12 +87,13 @@ module LinkedList
       end
       counter
     end
-    #
-    # def head
-    #   # return the head value at the beginning of the list
-    # end
-    #
-    # def tail
+
+    def head_value
+      # return the head value at the beginning of the list
+      @head.data
+    end
+
+    # def tail_value
     #   # return the tail value at the end of the list
     #   # a tail is the node that has nil as its next node
     # end
@@ -130,6 +129,4 @@ new_node = LinkedList::Node.new(:node_data)
 new_node2 = LinkedList::Node.new(:node2_data)
 new_list.append(new_node)
 new_list.append(new_node2)
-new_list # => #<LinkedList::List:0x007feecb122cf0 @head=#<LinkedList::Node:0x007feecb122cc8 @data=:node_data, @next=#<LinkedList::Node:0x007feecb122ca0 @data=:node2_data, @next=nil>>>
-new_list.pop # => nil
-new_list # => #<LinkedList::List:0x007feecb122cf0 @head=#<LinkedList::Node:0x007feecb122cc8 @data=:node_data, @next=nil>>
+new_list.head  # => :node_data
