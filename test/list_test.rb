@@ -48,11 +48,10 @@ class LinkedList::ListTest < MiniTest::Test
   end
 
   def test_pops_an_element_from_the_end_of_the_list
-    skip
-    # @new_list.append(@new_node)
-    # @new_list.append(@new_node2)
-    # @new_list.pop
-    # assert_equal nil, @new_node.next
+    @new_list.append(@new_node)
+    @new_list.append(@new_node2)
+    @new_list.pop
+    assert_equal nil, @new_node.next
   end
 
   def test_counts_the_number_of_nodes_in_the_list

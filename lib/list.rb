@@ -64,21 +64,20 @@ module LinkedList
       includes
     end
 
-    # def pop
-    #   here = @head
-    # counter < count
-    #   while counter
-    #     here = here.next
-    #     count += 1
-    #   end
-    #
-    #
-    # end
+    def pop
+      here = @head
+      counter = 1
+      while counter < count-1
+        here = here.next
+        counter += 1
+      end
+      here.next = nil
+    end
 
     def count
       # count the number of elements in the list
       head
-      if @head.nil? # => true
+      if @head.nil? # => false
         counter = 0
       else
         here = @head
@@ -129,4 +128,8 @@ end
 new_list = LinkedList::List.new
 new_node = LinkedList::Node.new(:node_data)
 new_node2 = LinkedList::Node.new(:node2_data)
-new_list.count # => 0
+new_list.append(new_node)
+new_list.append(new_node2)
+new_list # => #<LinkedList::List:0x007feecb122cf0 @head=#<LinkedList::Node:0x007feecb122cc8 @data=:node_data, @next=#<LinkedList::Node:0x007feecb122ca0 @data=:node2_data, @next=nil>>>
+new_list.pop # => nil
+new_list # => #<LinkedList::List:0x007feecb122cf0 @head=#<LinkedList::Node:0x007feecb122cc8 @data=:node_data, @next=nil>>
