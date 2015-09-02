@@ -1,4 +1,4 @@
-require_relative "node"
+require_relative 'node'
 
 module LinkedList
   class List
@@ -6,8 +6,6 @@ module LinkedList
 
     def initialize(head = nil)
       @head = head
-      # data of each node
-      # next node of each node
     end
 
     def append(node)
@@ -40,7 +38,7 @@ module LinkedList
         until count == index
           placeholder = here
           here = here.next
-          count +=1
+          count += 1
         end
         node.next = here
         placeholder.next = node
@@ -48,18 +46,20 @@ module LinkedList
     end
 
     def includes?(node)
-      here = @head
-      includes = false
-      until here.tail?
+      if @head.nil?
+        includes = false
+      else
+        here = @head
+        includes = false
+        until here.tail?
+          while here.data != node
+            here.data
+            here = here.next
+          end
+        end
         if here.data == node
-           includes = true
-           break
-        else
-           here = here.next
-         end
-      end
-      if here.data == node
-         includes = true
+          includes = true
+        end
       end
       includes
     end
@@ -67,7 +67,7 @@ module LinkedList
     def pop
       here = @head
       counter = 1
-      while counter < count-1
+      while counter < count - 1
         here = here.next
         counter += 1
       end
@@ -75,7 +75,7 @@ module LinkedList
     end
 
     def count
-      if @head.nil? # =>
+      if @head.nil?
         counter = 0
       else
         here = @head
@@ -89,17 +89,13 @@ module LinkedList
     end
 
     def head_value
-      # return the head value at the beginning of the list
       @head.data
     end
 
     def tail_value
-      # return the tail value at the end of the list
-      # a tail is the node that has nil as its next node
       here = @head
-      until here.tail?
-        here = here.next
-      end
+
+        here = here.next until here.tail?
       here.data
     end
 
@@ -108,7 +104,7 @@ module LinkedList
       counter = 0
       until counter == index
         here = here.next
-        counter +=1
+        counter += 1
       end
       here.data
     end
@@ -129,14 +125,13 @@ module LinkedList
       until counter == index
         placeholder = here
         here = here.next
-        counter +=1
+        counter += 1
       end
       placeholder.next = here.next
       here.next = nil
     end
 
     def remove_by_value(value)
-      # removes the first occurrence of the specified value
       here = @head
       until here.data == value
         placeholder = here
@@ -147,7 +142,7 @@ module LinkedList
     end
 
     def distance(node_one, node_two)
-      point_a = find_by_value(node_one.data) # => 2
+      point_a = find_by_value(node_one.data)
       point_b = find_by_value(node_two.data)
       (point_a - point_b).abs
     end
@@ -157,8 +152,5 @@ end
 new_list = LinkedList::List.new
 new_node = LinkedList::Node.new(:node_data)
 new_node2 = LinkedList::Node.new(:node2_data)
-new_node3 = LinkedList::Node.new(:node3_data)
 new_list.append(new_node)
-new_list.append(new_node2)
-new_list.append(new_node3)
-new_list.distance(new_node3, new_node) # => 2
+new_list.includes?(:node_data) # => true

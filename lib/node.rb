@@ -8,13 +8,8 @@ module LinkedList
       @next = nil
     end
 
-    def next_node(node)
-      # uses the pointer to go to the next node
-    end
-
     def tail?
       @next.nil?
     end
-
   end
 end
