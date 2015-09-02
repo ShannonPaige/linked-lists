@@ -101,4 +101,11 @@ class LinkedList::ListTest < MiniTest::Test
     @new_list.remove_by_value(:node2_data)
     assert_equal @new_node3, @new_node.next
   end
+
+  def test_returns_the_distance_between_two_nodes
+    @new_list.append(@new_node)
+    @new_list.append(@new_node2)
+    @new_list.append(@new_node3)
+    assert_equal 2, @new_list.distance(@new_node, @new_node3)
+  end
 end

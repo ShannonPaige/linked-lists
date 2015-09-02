@@ -124,7 +124,6 @@ module LinkedList
     end
 
     def remove_by_index(index)
-      # removes the value at the specified index
       here = @head
       counter = 0
       until counter == index
@@ -146,6 +145,12 @@ module LinkedList
       placeholder.next = here.next
       here.next = nil
     end
+
+    def distance(node_one, node_two)
+      point_a = find_by_value(node_one.data) # => 2
+      point_b = find_by_value(node_two.data)
+      (point_a - point_b).abs
+    end
   end
 end
 
@@ -156,4 +161,4 @@ new_node3 = LinkedList::Node.new(:node3_data)
 new_list.append(new_node)
 new_list.append(new_node2)
 new_list.append(new_node3)
-new_list.remove_by_index(1)
+new_list.distance(new_node3, new_node) # => 2
